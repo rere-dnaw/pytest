@@ -1,6 +1,6 @@
 from rest_framework import routers
 
-from .views import BlockchainViewSet
+from blockchain.views import BlockchainViewSet
 
 blockchain_router = routers.DefaultRouter()
 blockchain_router.register(

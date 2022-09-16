@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Blockchain
+from blockchain.models import Blockchain
 
 
 class BlockchainSerializer(serializers.ModelSerializer):

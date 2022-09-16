@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Blockchain
+from blockchain.models import Blockchain
 
 
 @admin.register(Blockchain)
