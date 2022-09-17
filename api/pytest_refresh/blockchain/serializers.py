@@ -9,7 +9,7 @@ class BlockchainSerializer(serializers.ModelSerializer):
             "id",
             "name",
             "ticker",
-            "status",
+            "type",
             "last_update",
             "project_url",
             "market_cap",

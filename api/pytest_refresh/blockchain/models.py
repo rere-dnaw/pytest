@@ -12,14 +12,16 @@ class Blockchain(models.Model):
 
     name = models.CharField(max_length=50, unique=True)
     ticker = models.CharField(max_length=10, unique=True)
-    status = models.CharField(
+    type = models.CharField(
         choices=Categories.choices, default=Categories.NO_DEF, max_length=30
     )
     last_update = models.DateTimeField(default=now, editable=True)
-    project_url = models.URLField(default=None, blank=True)
-    market_cap = models.IntegerField()
-    last_price = models.FloatField()
-    notes = models.CharField(max_length=200, default=None)
+    project_url = models.URLField(blank=True)
+    market_cap = models.IntegerField(default=0)
+    last_price = models.FloatField(default=0, max_length=20)
+    notes = models.CharField(max_length=200, default="")
+
+    objects = models.Manager()  # helps with reference to django object attribute
 
     def __str__(self) -> str:
         return f"{self.name} ({self.ticker})"
