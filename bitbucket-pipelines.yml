@@ -15,9 +15,7 @@ pipelines:
           script:
             - pip install pipenv --upgrade
             - pipenv install --system
-            - pwd
-            - ls
-            - export PYTHONPATH=$PYTHONPATH:$PYTHONPATH/api/blockchain
+            - export PYTHONPATH=$PYTHONPATH:$PYTHONPATH/api/pytest_refresh
             - pytest api/blockchain -vs --durations=0 --junitxml=test-reports/report.xml
       - step:
           name: Lint code
