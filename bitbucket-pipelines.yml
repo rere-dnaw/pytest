@@ -14,5 +14,4 @@ pipelines:
         script:
           - pip install pipenv --upgrade
           - pipenv install --system
-          - export PYTHONPATH=$PYTHONPATH:$PYTHONPATH/api/pytest_refresh
           - pytest api/pytest_refresh -vs --durations=0 --junitxml=test-reports/report.xml
