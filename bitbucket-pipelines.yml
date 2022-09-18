@@ -9,13 +9,13 @@ pipelines:
   default:
     - parallel:
       - step:
-          name: Test
+          name: Django API Test
           caches:
             - pip
           script:
-            - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-            - pip install pytest
-            - pytest -v tests/* --junitxml=test-reports/report.xml
+            - pip install pipenv --upgrade
+            - pipenv install --system
+            - pytest api/blockchain -vs --durations=0 --junitxml=test-reports/report.xml
       - step:
           name: Lint code
           script:
