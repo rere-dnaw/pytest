@@ -7,19 +7,12 @@ image: python:3.8
 
 pipelines:
   default:
-    - parallel:
-      - step:
-          name: Django API Test
-          caches:
-            - pip
-          script:
-            - pip install pipenv --upgrade
-            - pipenv install --system
-            - export PYTHONPATH=$PYTHONPATH:$PYTHONPATH/api/pytest_refresh
-            - pytest api/pytest_refresh -vs --durations=0 --junitxml=test-reports/report.xml
-      - step:
-          name: Lint code
-          script:
-            # Enforce style consistency across Python projects https://flake8.pycqa.org/en/latest/manpage.html
-            - pip install flake8
-            - flake8 . --extend-exclude=dist,build --show-source --statistics
+    - step:
+        name: Django API Test
+        caches:
+          - pip
+        script:
+          - pip install pipenv --upgrade
+          - pipenv install --system
+          - export PYTHONPATH=$PYTHONPATH:$PYTHONPATH/api/pytest_refresh
+          - pytest api/pytest_refresh -vs --durations=0 --junitxml=test-reports/report.xml
