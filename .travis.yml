@@ -3,9 +3,8 @@ python:
   - "3.8"
   dist: xenial
   sudo: trueinstall:
-install:  
-  - pip install pipenv
-  - pipenv install
-# command to run tests
 script:
-  - pytest
+  - pip install pipenv --upgrade
+  - pipenv install --system
+  - pytest api/pytest_refresh -sv 
+# command to run tests
