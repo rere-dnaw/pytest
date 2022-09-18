@@ -16,7 +16,7 @@ pipelines:
             - pip install pipenv --upgrade
             - pipenv install --system
             - export PYTHONPATH=$PYTHONPATH:$PYTHONPATH/api/pytest_refresh
-            - pytest api/blockchain -vs --durations=0 --junitxml=test-reports/report.xml
+            - pytest api/pytest_refresh -vs --durations=0 --junitxml=test-reports/report.xml
       - step:
           name: Lint code
           script:
