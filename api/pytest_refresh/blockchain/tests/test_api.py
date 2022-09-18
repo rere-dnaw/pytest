@@ -21,7 +21,7 @@ class TestGetBlockchain(BasicBlockchainAPiTestCase):
     def test_zero_blockchain_empty_list(self) -> None:
         response = self.client.get(self.blockchain_url)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(json.loads(response.content), [])
+        self.assertEqual(json.loads(response.content)["results"], [])
 
     def test_one_blockchain_list(self) -> None:
         test_blockchain = Blockchain.objects.create(
@@ -30,7 +30,7 @@ class TestGetBlockchain(BasicBlockchainAPiTestCase):
         )
 
         response = self.client.get(self.blockchain_url)
-        response_content = json.loads(response.content)[0]
+        response_content = json.loads(response.content)["results"][0]
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response_content["name"], test_blockchain.name)
@@ -111,17 +111,18 @@ class TestPostBlockchain(BasicBlockchainAPiTestCase):
         )
         self.assertEqual(response.status_code, 201)
         response_content = json.loads(response.content)
-        self.assertEqual(response_content['name'], 'Binance')
-        self.assertEqual(response_content['ticker'], 'BNB')
-        self.assertEqual(response_content['type'], 'Not Selected')
-        self.assertEqual(response_content['project_url'], '')
-        self.assertEqual(response_content['market_cap'], 0)
-        self.assertEqual(response_content['last_price'], 0)
-        self.assertEqual(response_content['notes'], '')
+        self.assertEqual(response_content["name"], "Binance")
+        self.assertEqual(response_content["ticker"], "BNB")
+        self.assertEqual(response_content["type"], "Not Selected")
+        self.assertEqual(response_content["project_url"], "")
+        self.assertEqual(response_content["market_cap"], 0)
+        self.assertEqual(response_content["last_price"], 0)
+        self.assertEqual(response_content["notes"], "")
 
     def test_blockchain_default_type_wrong(self) -> None:
         response = self.client.post(
-            path=self.blockchain_url, data={"name": "Binance", "ticker": "BNB", 'type': 'Babla'}
+            path=self.blockchain_url,
+            data={"name": "Binance", "ticker": "BNB", "type": "Babla"},
         )
         self.assertEqual(response.status_code, 400)
         response_content = json.loads(response.content)
@@ -129,17 +130,23 @@ class TestPostBlockchain(BasicBlockchainAPiTestCase):
 
     def test_blockchain_default_type_layer1(self) -> None:
         response = self.client.post(
-            path=self.blockchain_url, data={"name": "Binance", "ticker": "BNB", 'type': 'Layer 1'}
+            path=self.blockchain_url,
+            data={"name": "Binance", "ticker": "BNB", "type": "Layer 1"},
         )
         self.assertEqual(response.status_code, 201)
         response_content = json.loads(response.content)
-        self.assertEqual(response_content['type'], 'Layer 1')
+        self.assertEqual(response_content["type"], "Layer 1")
 
     def test_blockchain_str_validate_mark_cap(self) -> None:
         response = self.client.post(
-            path=self.blockchain_url, data={"name": "Binance", "ticker": "BNB", 'type': 'Layer 1', 'market_cap': 'daf'}
+            path=self.blockchain_url,
+            data={
+                "name": "Binance",
+                "ticker": "BNB",
+                "type": "Layer 1",
+                "market_cap": "daf",
+            },
         )
         self.assertEqual(response.status_code, 400)
         response_content = json.loads(response.content)
-        print(response_content)
-
+        # print(response_content)
