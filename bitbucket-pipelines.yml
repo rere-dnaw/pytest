@@ -15,6 +15,8 @@ pipelines:
           script:
             - pip install pipenv --upgrade
             - pipenv install --system
+            - pwd
+            - ls
             - export PYTHONPATH=$PYTHONPATH:$PYTHONPATH/api/blockchain
             - pytest api/blockchain -vs --durations=0 --junitxml=test-reports/report.xml
       - step:
