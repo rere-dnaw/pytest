@@ -9,6 +9,7 @@ black = "*"
 pytest = "*"
 django = "*"
 pytest-django = "*"
+django-environ = "*"
 
 [dev-packages]
 
