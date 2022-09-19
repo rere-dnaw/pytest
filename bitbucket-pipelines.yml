@@ -14,4 +14,6 @@ pipelines:
         script:
           - pip install pipenv --upgrade
           - pipenv install --system
+          - touch .env
+          - echo SECRET_KEY=$SECRET_KEY >> .env
           - pytest api/pytest_refresh -vs --durations=0 --junitxml=test-reports/report.xml
