@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 from blockchain.urls import blockchain_router
+from blockchain.views import send_email
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include(blockchain_router.urls)),
+    path("send_email", send_email),
 ]
