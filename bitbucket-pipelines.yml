@@ -15,5 +15,12 @@ pipelines:
           - pip install pipenv --upgrade
           - pipenv install --system
           - touch .env
+          - echo DEFAULT_FROM_EMAIL=$DEFAULT_FROM_EMAIL >> .env
+          - echo EMAIL_BACKEND=$EMAIL_BACKEND >> .env
+          - echo EMAIL_HOST_PASSWORD=$EMAIL_HOST_PASSWORD >> .env
+          - echo EMAIL_HOST=$EMAIL_HOST >> .env
+          - echo EMAIL_HOST_USER=$EMAIL_HOST_USER >> .env
+          - echo EMAIL_PORT=$EMAIL_PORT >> .env
+          - echo EMAIL_USE_TLS=$EMAIL_USE_TLS >> .env
           - echo SECRET_KEY=$SECRET_KEY >> .env
           - pytest api/pytest_refresh -vs --durations=0 --junitxml=test-reports/report.xml
