@@ -4,9 +4,9 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                pip install pipenv --upgrade
-                pipenv install --system
-                touch .env
+                $ (sudo) pip install pipenv --upgrade
+                $ (sudo) pipenv install --system
+                $ (sudo) touch .env
             }
         }
     }
