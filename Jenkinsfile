@@ -6,6 +6,7 @@ pipeline {
             steps {
                 sh 'pip install pipenv --upgrade'
                 sh 'touch .env'
+                sh echo "Trigger build"
             }
         }
     }
