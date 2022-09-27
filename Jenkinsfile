@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'linux-slave'}
 
     // this section configures Jenkins options
     options {
@@ -27,7 +27,6 @@ pipeline {
         stage('Requirements') {
             steps {
                 echo 'Installing requirements...'
-                sh 'pip install pipenv --upgrade'
                 sh 'touch .env'
             }
         }
