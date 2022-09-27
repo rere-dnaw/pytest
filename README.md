@@ -1,3 +1,7 @@
 # pytest refresh
-[![Build Status](https://jenk.rockwatch.xyz/buildStatus/icon?job=pytest-project)](https://jenk.rockwatch.xyz/job/pytest-project/)
-Quick project to refresh pytest.
+
+---
+[![Build Status](https://jenk.rockwatch.xyz/buildStatus/icon?job=pytest)](https://jenk.rockwatch.xyz/job/pytest/)
+
+### Quick project to refresh pytest.
+
