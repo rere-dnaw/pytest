@@ -27,6 +27,7 @@ pipeline {
         stage('Requirements') {
             steps {
                 echo 'Installing requirements...'
+                sh 'pipenv install pytest'
                 sh 'touch .env'
             }
         }
